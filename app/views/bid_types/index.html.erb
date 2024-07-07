@@ -1,0 +1,23 @@
+<div class="card mt-3">
+  <div class="card-body">
+    <h5 class="card-title">Bid types</h5>
+
+    <!-- Default Table -->
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">S.No</th>
+        <th scope="col">Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @bid_types.each_with_index do |bid_type, index| %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td><%= bid_type.name %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

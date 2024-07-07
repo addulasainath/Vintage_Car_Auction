@@ -1,0 +1,31 @@
+<div class="card mt-3">
+  <div class="card-body">
+    <h5 class="card-title">Car Types</h5>
+
+    <!-- Default Table -->
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">S.No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Performance</th>
+        <th scope="col">Thermal management</th>
+        <th scope="col">Thermal comfort</th>
+        <th scope="col">Safety</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @car_types.each_with_index do |car_type, index| %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td><%= car_type.name %></td>
+          <td><%= car_type.performance %></td>
+          <td><%= car_type.thermal_management %></td>
+          <td><%= car_type.thermal_comfort %></td>
+          <td><%= car_type.safety %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

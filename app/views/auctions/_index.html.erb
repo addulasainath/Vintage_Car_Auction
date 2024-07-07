@@ -1,0 +1,70 @@
+<% if @auctions.size == 0 %>
+  <h3 class="mt-3 text-center">No auctions found!</h3>
+<% else %>
+  <div class="row mt-3">
+    <% @auctions.each do |auction| %>
+      <div class="col-md-6">
+        <div class="card">
+          <% if auction.image.attached? %>
+            <%= image_tag auction.image, class: "card-img-top", style: "width: 100%; height: 250px;" %>
+          <% end %>
+          <div class="card-body">
+            <p class="card-text">
+            <div class="row mt-2">
+              <div class="col-md-3"><strong>Date</strong></div>
+              <div class="col-md-8"><%= auction.date %></div>
+            </div>
+
+
+            <div class="row mt-2">
+              <div class="col-md-3"><strong>Car type</strong></div>
+              <div class="col-md-8"><%= auction.car_type.name %></div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col-md-3"><strong>Car color</strong></div>
+              <div class="col-md-8"><%= auction.car_color.color_name %></div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col-md-3"><strong>Car model</strong></div>
+              <div class="col-md-8"><%= auction.car_model.name %></div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col-md-3"><strong>Bid type</strong></div>
+              <div class="col-md-8"><%= auction.bid_type.name %></div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col-md-3"><strong>Minimum amount</strong></div>
+              <div class="col-md-8"><%= auction.minimum_amount %></div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col-md-3"><strong>Maximum amount</strong></div>
+              <div class="col-md-8"><%= auction.maximum_amount %></div>
+            </div>
+
+            <div class="mt-2">
+              <% unless UserBid.find_by(user: current_user, auction: auction).nil? %>
+                <% if UserBidReview.find_by(user: current_user, auction: auction).nil? %>
+                  <a href="/user_reviews/new?auction_id=<%= auction.id %>" class="btn btn-sm btn-outline-primary float-end">Place
+                    your review</a>
+                <% end %>
+              <% end %>
+              <% if UserBid.find_by(user: current_user, auction: auction).nil? %>
+                <a href="/user_bids/new?auction_id=<%= auction.id %>" class="btn btn-sm btn-outline-primary float-end">Place
+                  your bid</a>
+              <% end %>
+              <a href="/user_bids?auction_id=<%= auction.id %>" class="btn btn-sm btn-outline-primary ml-3">Bids</a>
+              <a href="/user_reviews?auction_id=<%= auction.id %>" class="btn btn-sm btn-outline-primary ml-3">Reviews</a>
+            </div>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

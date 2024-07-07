@@ -1,0 +1,31 @@
+<%= simple_form_for :search, url: auctions_path, method: :get do |f| %>
+  <div class="row mt-3">
+
+    <div class="col-md-3">
+      <label>Car type</label>
+      <%= f.input :car_type_id, as: :select, collection: CarType.all, input_html: { class: "form-control" }, include_blank: "Select car type", label: false %>
+    </div>
+
+    <div class="col-md-3">
+      <label>Car color</label>
+      <%= f.input :car_color_id, as: :select, collection: CarColor.all, input_html: { class: "form-control" }, include_blank: "Select car color", label: false  %>
+    </div>
+
+    <div class="col-md-3">
+      <label>Car model</label>
+      <%= f.input :car_model_id, as: :select, collection: CarModel.all, input_html: { class: "form-control" }, include_blank: "Select car model", label: false  %>
+    </div>
+
+    <div class="col-md-3">
+      <label>Bid type</label>
+      <%= f.input :bid_type_id, as: :select, collection: BidType.all, input_html: { class: "form-control" }, include_blank: "Select bid type", label: false  %>
+    </div>
+
+
+  </div>
+
+  <div class="mt-2">
+    <%= f.submit "Search", class: "btn btn-sm btn-primary" %>
+  </div>
+
+<% end %>
